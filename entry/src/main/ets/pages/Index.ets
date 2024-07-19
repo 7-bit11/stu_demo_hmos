@@ -42,7 +42,7 @@ struct Item {
       Text(this.page.title).ItemTextStyle()
     }.CardStyle()
     .onClick((_) => {
-      router.pushUrl({ url: this.page.path },
+      router.pushUrl({ url: this.page.path, params: { "title": this.page.title } },
         router.RouterMode.Single,
         error => {
           if (error) {

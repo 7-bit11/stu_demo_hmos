@@ -1,17 +1,38 @@
+import { router } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct ImagePage {
-  build() {
-    Column({ space: 10 }) {
-      // net work image
-      Image('https://konachan.net/sample/1dcfaece1e0738c40aec219403509b8e/Konachan.com%20-%20379176%20sample.jpg')//展位图
-        .alt($rawfile("loading.gif"))//拓展方式
-        .objectFit(ImageFit.Auto)
-      // local media image
-      Image($r("app.media.img"))
+  @State title: string = "";
+  params: object = router.getParams();
 
-      //local rawfile image
-      Image($rawfile("img.png"))
-    }
+  aboutToAppear(): void {
+    this.title = this.params['title'];
+  }
+
+  build() {
+    Navigation() {
+      List({ space: 10 }) {
+        ListItem() {
+          // net work image
+          Image("https://konachan.net/sample/9d26338140a88eff00b47c05bc3ec54f/Konachan.com%20-%20379074%20sample.jpg")//展位图
+            .alt($rawfile("loading.gif"))//拓展方式
+            .objectFit(ImageFit.Auto)
+        }
+
+        ListItem() {
+          // local media image
+          Image($r("app.media.img"))
+        }
+
+        ListItem() {
+          //local rawfile image
+          Image($rawfile("img.png"))
+        }
+      }
+    }.title(this.title)//.titleMode(NavigationTitleMode.Full)
+    .onClick(()=>{
+      router.back()
+    })
   }
 }
