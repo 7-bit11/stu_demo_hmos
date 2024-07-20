@@ -5,7 +5,8 @@ import { PageEntry } from '../entryability/PageEntry';
 @Component
 struct Index {
   pages: Array<PageEntry> = [
-    new PageEntry("pages/widget/ImagePage", "ImageDemo")
+    new PageEntry("pages/widget/ImagePage", "ImageDemo"),
+    new PageEntry("pages/widget/TextPage", "TextDemo")
   ];
   index: number = 1;
 
