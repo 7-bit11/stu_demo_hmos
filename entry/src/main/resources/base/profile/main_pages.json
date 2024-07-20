@@ -4,5 +4,6 @@
     "pages/state_demo",
     "pages/widget/ImagePage",
     "pages/widget/TextPage",
+    "pages/widget/ButtonPage"
   ]
 }

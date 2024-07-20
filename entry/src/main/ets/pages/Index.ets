@@ -6,7 +6,8 @@ import { PageEntry } from '../entryability/PageEntry';
 struct Index {
   pages: Array<PageEntry> = [
     new PageEntry("pages/widget/ImagePage", "ImageDemo"),
-    new PageEntry("pages/widget/TextPage", "TextDemo")
+    new PageEntry("pages/widget/TextPage", "TextDemo"),
+    new PageEntry("pages/widget/ButtonPage", "ButtonDemo")
   ];
   index: number = 1;
 
