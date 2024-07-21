@@ -8,7 +8,8 @@ struct Index {
     new PageEntry("pages/widget/ImagePage", "ImageDemo"),
     new PageEntry("pages/widget/TextPage", "TextDemo"),
     new PageEntry("pages/widget/ButtonPage", "ButtonDemo"),
-    new PageEntry("pages/widget/SliderPage", "SliderDemo")
+    new PageEntry("pages/widget/SliderPage", "SliderDemo"),
+    new PageEntry("pages/widget/ColumnRowPage", "Column&RowDemo")
   ];
   index: number = 1;
 

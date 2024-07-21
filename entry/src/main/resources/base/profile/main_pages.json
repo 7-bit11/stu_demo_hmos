@@ -5,6 +5,7 @@
     "pages/widget/ImagePage",
     "pages/widget/TextPage",
     "pages/widget/ButtonPage",
-    "pages/widget/SliderPage"
+    "pages/widget/SliderPage",
+    "pages/widget/ColumnRowPage",
   ]
 }
