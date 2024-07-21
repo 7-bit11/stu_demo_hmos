@@ -7,5 +7,6 @@
     "pages/widget/ButtonPage",
     "pages/widget/SliderPage",
     "pages/widget/ColumnRowPage",
+    "pages/widget/ForEachPage"
   ]
 }
