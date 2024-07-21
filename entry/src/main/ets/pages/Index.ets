@@ -7,7 +7,8 @@ struct Index {
   pages: Array<PageEntry> = [
     new PageEntry("pages/widget/ImagePage", "ImageDemo"),
     new PageEntry("pages/widget/TextPage", "TextDemo"),
-    new PageEntry("pages/widget/ButtonPage", "ButtonDemo")
+    new PageEntry("pages/widget/ButtonPage", "ButtonDemo"),
+    new PageEntry("pages/widget/SliderPage", "SliderDemo")
   ];
   index: number = 1;
 
