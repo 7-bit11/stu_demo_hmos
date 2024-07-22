@@ -8,6 +8,7 @@
     "pages/widget/SliderPage",
     "pages/widget/ColumnRowPage",
     "pages/widget/ForEachPage",
-    "pages/widget/ListPage"
+    "pages/widget/ListPage",
+    "pages/widget/BuilderStylesPage"
   ]
 }
