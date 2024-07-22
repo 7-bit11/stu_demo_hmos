@@ -10,7 +10,8 @@ struct Index {
     new PageEntry("pages/widget/ButtonPage", "ButtonDemo"),
     new PageEntry("pages/widget/SliderPage", "SliderDemo"),
     new PageEntry("pages/widget/ColumnRowPage", "Column&RowDemo"),
-    new PageEntry("pages/widget/ForEachPage", "ForeachDemo")
+    new PageEntry("pages/widget/ForEachPage", "ForeachDemo"),
+    new PageEntry("pages/widget/ListPage", "ListDemo")
   ];
   index: number = 1;
 
