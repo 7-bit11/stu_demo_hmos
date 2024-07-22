@@ -9,6 +9,7 @@
     "pages/widget/ColumnRowPage",
     "pages/widget/ForEachPage",
     "pages/widget/ListPage",
-    "pages/widget/BuilderStylesPage"
+    "pages/widget/BuilderStylesPage",
+    "pages/state/StatePage"
   ]
 }

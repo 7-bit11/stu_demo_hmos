@@ -12,7 +12,8 @@ struct Index {
     new PageEntry("pages/widget/ColumnRowPage", "Column&RowDemo"),
     new PageEntry("pages/widget/ForEachPage", "ForeachDemo"),
     new PageEntry("pages/widget/ListPage", "ListDemo"),
-    new PageEntry("pages/widget/BuilderStylesPage", "BuilderStylesExtendDemo")
+    new PageEntry("pages/widget/BuilderStylesPage", "BuilderStylesExtendDemo"),
+    new PageEntry("pages/state/StatePage", "StateDemo")
   ];
   index: number = 1;
 
