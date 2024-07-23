@@ -11,6 +11,7 @@
     "pages/widget/ListPage",
     "pages/widget/BuilderStylesPage",
     "pages/state/StatePage",
-    "pages/state/StateDemoPage"
+    "pages/state/StateDemoPage",
+    "pages/state/PropLinkPage"
   ]
 }

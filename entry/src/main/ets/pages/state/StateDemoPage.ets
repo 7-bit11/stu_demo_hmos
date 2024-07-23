@@ -40,7 +40,7 @@ struct StateDemoPage {
             }.Card()
           }.swipeAction({ end: this.getDeleteButton(index) })
         })
-      }
+      }.layoutWeight(1)
     }.padding(20)
   }
 
