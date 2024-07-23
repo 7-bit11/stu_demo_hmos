@@ -10,6 +10,7 @@
     "pages/widget/ForEachPage",
     "pages/widget/ListPage",
     "pages/widget/BuilderStylesPage",
-    "pages/state/StatePage"
+    "pages/state/StatePage",
+    "pages/state/StateDemoPage"
   ]
 }
