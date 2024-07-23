@@ -14,8 +14,9 @@ struct Index {
     new PageEntry("pages/widget/ListPage", "ListDemo"),
     new PageEntry("pages/widget/BuilderStylesPage", "BuilderStylesExtendDemo"),
     new PageEntry("pages/state/StatePage", "StateDemo"),
-    new PageEntry("pages/state/StateDemoPage", "StateDemoPage"),
-    new PageEntry("pages/state/PropLinkPage", "PropLinkPage")
+    new PageEntry("pages/state/StateDemoPage", "StateDemoPageDemo"),
+    new PageEntry("pages/state/PropLinkPage", "PropLinkPageDemo"),
+    new PageEntry("pages/state/ProvideConsumePage", "ProvideConsumePageDemo")
   ];
   index: number = 1;
 
