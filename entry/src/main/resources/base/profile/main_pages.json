@@ -13,6 +13,7 @@
     "pages/state/StatePage",
     "pages/state/StateDemoPage",
     "pages/state/PropLinkPage",
-    "pages/state/ProvideConsumePage"
+    "pages/state/ProvideConsumePage",
+    "pages/state/ObjectLinkObservedPage"
   ]
 }
