@@ -7,7 +7,7 @@ import { FramePage } from './ItemComponent';
 struct Index {
   pages: Array<PageEntry> = [
     new PageEntry("pages/widget/FrameWidgetPage", "WidgetPage"),
-
+    new PageEntry("pages/state/FrameStatePage", "StatePage"),
   ];
   index: number = 1;
 

@@ -16,6 +16,7 @@
     "pages/state/ProvideConsumePage",
     "pages/state/ObjectLinkObservedPage",
     "pages/widget/FrameWidgetPage",
-    "pages/ItemComponent"
+    "pages/ItemComponent",
+    "pages/state/FrameStatePage"
   ]
 }
