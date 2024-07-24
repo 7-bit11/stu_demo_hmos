@@ -13,7 +13,9 @@ struct FrameAnimatePage {
     this.title = this.params['title'];
   }
 
-  pages: Array<PageEntry> = [];
+  pages: Array<PageEntry> = [
+    new PageEntry("pages/animate/AnimatePage", "AnimateDemo"),
+  ];
 
   build() {
     Navigation() {

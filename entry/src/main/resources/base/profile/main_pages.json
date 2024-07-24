@@ -18,6 +18,7 @@
     "pages/widget/FrameWidgetPage",
     "pages/ItemComponent",
     "pages/state/FrameStatePage",
-    "pages/animate/FrameAnimatePage"
+    "pages/animate/FrameAnimatePage",
+    "pages/animate/AnimatePage"
   ]
 }
