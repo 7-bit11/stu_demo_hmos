@@ -17,6 +17,7 @@
     "pages/state/ObjectLinkObservedPage",
     "pages/widget/FrameWidgetPage",
     "pages/ItemComponent",
-    "pages/state/FrameStatePage"
+    "pages/state/FrameStatePage",
+    "pages/animate/FrameAnimatePage"
   ]
 }
