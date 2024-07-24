@@ -8,9 +8,12 @@ struct ObjectLinkObservedPage {
   @State title: string = "";
   params: object = router.getParams();
 
-  tasksChange() {
+  tasksChange(boo: boolean) {
     this.count.num = this.count.task.length
     this.count.completeNum = this.count.task.filter(item => item.select).length
+    console.log("****************************************")
+    console.log(`${boo}`)
+    console.log("****************************************")
   }
 
   aboutToAppear(): void {
@@ -88,8 +91,10 @@ struct TitleCard {
 @Component
 struct BodyWidget {
   @ObjectLink count: CountEntity
-  onTasksChange: Function = () => {}
 
+  onTasksChange: Function = (boo: boolean) => {};
+
+  // Function = () => {}
   build() {
     Column() {
       Button("新增任务").onClick(() => {
@@ -105,7 +110,7 @@ struct BodyWidget {
               Blank()
               Checkbox().select(item.select).onChange((value) => {
                 item.select = value;
-                this.onTasksChange()
+                this.onTasksChange(value)
               }
               )
             }.Card()
