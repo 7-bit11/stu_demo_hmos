@@ -19,6 +19,7 @@
     "pages/ItemComponent",
     "pages/state/FrameStatePage",
     "pages/animate/FrameAnimatePage",
-    "pages/animate/AnimatePage"
+    "pages/animate/AnimatePage",
+    "pages/animate/TransAnimatePage"
   ]
 }

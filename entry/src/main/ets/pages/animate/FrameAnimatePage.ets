@@ -15,6 +15,7 @@ struct FrameAnimatePage {
 
   pages: Array<PageEntry> = [
     new PageEntry("pages/animate/AnimatePage", "AnimateDemo"),
+    new PageEntry("pages/animate/TransAnimatePage", "TransAnimateDemo"),
   ];
 
   build() {
