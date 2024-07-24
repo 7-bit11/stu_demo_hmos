@@ -14,6 +14,8 @@
     "pages/state/StateDemoPage",
     "pages/state/PropLinkPage",
     "pages/state/ProvideConsumePage",
-    "pages/state/ObjectLinkObservedPage"
+    "pages/state/ObjectLinkObservedPage",
+    "pages/widget/FrameWidgetPage",
+    "pages/ItemComponent"
   ]
 }
