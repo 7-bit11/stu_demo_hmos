@@ -9,6 +9,7 @@ struct Index {
     new PageEntry("pages/widget/FrameWidgetPage", "WidgetPage"),
     new PageEntry("pages/state/FrameStatePage", "StatePage"),
     new PageEntry("pages/animate/FrameAnimatePage", "AnimatePage"),
+    new PageEntry("pages/abilityDemo/DocumentListPage", "AbilityDocumentPage"),
   ];
   index: number = 1;
 

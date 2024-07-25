@@ -15,6 +15,14 @@
     {
       "name": "text_page",
       "value": "text 默认"
+    },
+    {
+      "name": "DocumentAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "DocumentAbility_label",
+      "value": "label"
     }
   ]
 }

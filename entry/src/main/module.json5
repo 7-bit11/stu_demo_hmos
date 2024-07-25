@@ -4,25 +4,33 @@
     "type": "entry",
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
-    "deviceTypes":  ["phone","tablet","2in1"],
+    "deviceTypes": [
+      "phone",
+      "tablet",
+      "2in1"
+    ],
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
     "requestPermissions": [
-      {"name": "ohos.permission.INTERNET"}
+      {
+        "name": "ohos.permission.INTERNET"
+      }
     ],
     "abilities": [
-    {
+      {
         "name": "EntryAbility",
         "srcEntry": "./ets/entryability/EntryAbility.ets",
         "description": "$string:EntryAbility_desc",
-        "icon": "$media:img", //应用图标
-        "label": "$string:EntryAbility_label",//应用名称
-        "startWindowIcon" : "$media:img",//启动时图标
-        "startWindowBackground" : "$color:start_window_background"  //启动时背景色
-          ,
-        "exported": true
-          ,
+        "icon": "$media:img",
+        //应用图标
+        "label": "$string:EntryAbility_label",
+        //应用名称
+        "startWindowIcon": "$media:img",
+        //启动时图标
+        "startWindowBackground": "$color:start_window_background",
+        //启动时背景色,
+        "exported": true,
         "skills": [
           {
             "entities": [
@@ -33,7 +41,18 @@
             ]
           }
         ]
-      }],"extensionAbilities": [
+      },
+      {
+        "name": "DocumentAbility",
+        "srcEntry": "./ets/documentability/DocumentAbility.ets",
+        "description": "$string:DocumentAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:DocumentAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background"
+      }
+    ],
+    "extensionAbilities": [
       {
         "name": "EntryBackupAbility",
         "srcEntry": "./ets/entrybackupability/EntryBackupAbility.ets",

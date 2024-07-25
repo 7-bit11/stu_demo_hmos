@@ -20,6 +20,8 @@
     "pages/state/FrameStatePage",
     "pages/animate/FrameAnimatePage",
     "pages/animate/AnimatePage",
-    "pages/animate/TransAnimatePage"
+    "pages/animate/TransAnimatePage",
+    "pages/abilityDemo/DocumentPage",
+    "pages/abilityDemo/DocumentListPage"
   ]
 }
