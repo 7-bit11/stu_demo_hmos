@@ -4,6 +4,8 @@
     "type": "entry",
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
+    //配置MyAbilityStage启动器
+    "srcEntry": "./ets/abilitystage/MyAbilityStage.ts",
     "deviceTypes": [
       "phone",
       "tablet",
@@ -49,7 +51,9 @@
         "icon": "$media:layered_image",
         "label": "$string:DocumentAbility_label",
         "startWindowIcon": "$media:startIcon",
-        "startWindowBackground": "$color:start_window_background"
+        "startWindowBackground": "$color:start_window_background",
+        //更改launch Ability类型  //默认"singleton"
+        "launchType": "specified"
       }
     ],
     "extensionAbilities": [
