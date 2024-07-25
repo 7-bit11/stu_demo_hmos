@@ -1,5 +1,5 @@
 import { router } from '@kit.ArkUI';
-import { PageEntry } from '../entryability/PageEntry';
+import { PageEntry } from '../entrys/PageEntry';
 import { FramePage } from './ItemComponent';
 
 @Entry

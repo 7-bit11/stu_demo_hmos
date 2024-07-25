@@ -1,4 +1,4 @@
-import { PageEntry } from '../../entryability/PageEntry';
+import { PageEntry } from '../../entrys/PageEntry';
 import router from '@ohos.router';
 import { FramePage } from '../ItemComponent';
 

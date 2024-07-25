@@ -1,5 +1,5 @@
 import router from '@ohos.router';
-import { PageEntry } from '../entryability/PageEntry';
+import { PageEntry } from '../entrys/PageEntry';
 
 @Entry
 @Component
