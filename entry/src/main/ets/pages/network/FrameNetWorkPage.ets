@@ -15,6 +15,7 @@ struct FrameNetWorkPage {
 
   pages: Array<PageEntry> = [
     new PageEntry("pages/network/HttpPage", "HttpDemo"),
+    new PageEntry("pages/network/AxiosPage", "AxiosDemo"),
   ];
 
   build() {
