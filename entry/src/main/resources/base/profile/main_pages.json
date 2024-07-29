@@ -25,6 +25,7 @@
     "pages/abilityDemo/DocumentListPage",
     "pages/network/HttpPage",
     "pages/network/AxiosPage",
-    "pages/network/FrameNetWorkPage"
+    "pages/network/FrameNetWorkPage",
+    "pages/preferences/PreferencesPage"
   ]
 }
