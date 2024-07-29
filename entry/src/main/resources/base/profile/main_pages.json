@@ -22,6 +22,8 @@
     "pages/animate/AnimatePage",
     "pages/animate/TransAnimatePage",
     "pages/abilityDemo/DocumentPage",
-    "pages/abilityDemo/DocumentListPage"
+    "pages/abilityDemo/DocumentListPage",
+    "pages/network/HttpPage",
+    "pages/network/FrameNetWorkPage"
   ]
 }
