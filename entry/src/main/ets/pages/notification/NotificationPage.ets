@@ -23,8 +23,23 @@ struct NotificationPage {
       }
     }
   }
+  ///长文本通知事件
+  requestTextLong: notificationManager.NotificationRequest = {
+    id: 456,
+    content: {
+      notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LONG_TEXT,
+      longText: {
+        title: "长文本通知标题",
+        text: "长文本通知内容",
+        additionalText: "长文本附加内容",
+        longText: "长文本中的数据.长文本中的数据.长文本中的数据.长文本中的数据.长文本中的数据.长文本中的数据.",
+        briefText: "通知概要",
+        expandedTitle: "长文本通知时候的标题"
+      }
+    }
+  }
 
-  build() {
+    build() {
     Navigation() {
       Column() {
         Button('文本通知栏').ButtonStyleMy()
