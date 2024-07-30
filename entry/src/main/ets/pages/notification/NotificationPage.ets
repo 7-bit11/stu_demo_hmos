@@ -38,8 +38,27 @@ struct NotificationPage {
       }
     }
   }
+  ///多行文本通知
+  requestTextLines: notificationManager.NotificationRequest = {
+    id: 789,
+    content: {
+      notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_MULTILINE,
+      multiLine: {
+        title: "多行文本通知标题",
+        text: "多行文本通知内容",
+        additionalText: "多行文本通知附加内容",
+        briefText: "通知概要多行文本通知",
+        longTitle: "多行标题",
+        lines: [
+          '第一行第一行第一行第一行',
+          '第二行第二行第二行第二行',
+          '第三行第三行第三行第三行'
+        ]
+      }
+    }
+  }
 
-    build() {
+  build() {
     Navigation() {
       Column() {
         Button('文本通知栏').ButtonStyleMy()
