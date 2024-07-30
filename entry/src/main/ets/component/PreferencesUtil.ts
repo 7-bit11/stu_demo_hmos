@@ -14,6 +14,16 @@ class PreferencesUtil {
       console.log("PreferencesUtil.init.ERROR", e)
     }
   }
+  async init1(context, name?: string) {
+    try {
+      // 加载初始化Preferences
+      let data = await preferences.getPreferences(context, name?? this.defaultName)
+      this.pref.set(name ?? this.defaultName, data)
+      console.log("PreferencesUtil.init.SUCCESS")
+    } catch (e) {
+      console.log("PreferencesUtil.init.ERROR", e)
+    }
+  }
 
   async getValue(key: string, defValue: preferences.ValueType, name?: string) {
     if (!this.pref.has(name ?? this.defaultName)) {

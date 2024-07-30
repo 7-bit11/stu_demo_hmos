@@ -26,6 +26,7 @@
     "pages/network/HttpPage",
     "pages/network/AxiosPage",
     "pages/network/FrameNetWorkPage",
-    "pages/preferences/PreferencesPage"
+    "pages/preferences/PreferencesPage",
+    "pages/database/DataTaskDemoPage"
   ]
 }
