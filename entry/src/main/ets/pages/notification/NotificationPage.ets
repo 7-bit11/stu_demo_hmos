@@ -1,14 +1,17 @@
 import router from '@ohos.router';
 import { notificationManager } from '@kit.NotificationKit';
+import image from '@ohos.multimedia.image';
 
 @Entry
 @Component
 struct NotificationPage {
   @State title: string = "";
   params: object = router.getParams();
+  picture?: image.PixelMap = undefined;
 
   aboutToAppear(): void {
     this.title = this.params['title'];
+    this.getPicture()
   }
 
   ///文本通知事件
@@ -57,15 +60,61 @@ struct NotificationPage {
       }
     }
   }
+  ///图片类型通知
+  requestTextImage: notificationManager.NotificationRequest = {
+    id: 912,
+    content: {
+      notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_PICTURE,
+      picture: {
+        title: "图片类型通知标题",
+        text: "图片类型通知内容",
+        additionalText: "图片类型通知附加内容",
+        briefText: "通知概要",
+        expandedTitle: "展开标题",
+        picture: this.picture!
+      }
+    }
+  }
+
+  async getPicture() {
+    console.log("=====================21323112132123", JSON.stringify("12312312312"))
+    const context = getContext(this).resourceManager;
+    let file = await context.getMediaContent($r("app.media.img"))
+    console.log("=====================file", JSON.stringify(file))
+    image.createImageSource(file.buffer).createPixelMap()
+      .then(value => {
+        console.log("=====================value", JSON.stringify(value))
+        this.picture = value
+        console.log("=====================picture", JSON.stringify(this.picture))
+      })
+      .catch(() => console.log("获取失败"));
+
+  }
+
+  click(request: notificationManager.NotificationRequest) {
+    notificationManager.publish(request).then(() => {
+      console.log("推送通知成功")
+    }).catch(() => console.log("推送通知失败"))
+  }
 
   build() {
     Navigation() {
       Column() {
         Button('文本通知栏').ButtonStyleMy()
           .onClick(() => {
-            notificationManager.publish(this.requestText).then(() => {
-              console.log("推送通知成功")
-            }).catch(() => console.log("推送通知失败"))
+            this.click(this.requestText)
+          })
+        Button('长文本通知栏').ButtonStyleMy()
+          .onClick(() => {
+            this.click(this.requestTextLong)
+          })
+        Button('多行通知栏').ButtonStyleMy()
+          .onClick(() => {
+            this.click(this.requestTextLines)
+          })
+        Button('图片通知栏').ButtonStyleMy()
+          .onClick(() => {
+            this.click(this.requestTextImage)
           })
       }
       .height('100%')
