@@ -13,6 +13,7 @@ struct Index {
     new PageEntry("pages/network/FrameNetWorkPage", "NetWorkPage"),
     new PageEntry("pages/preferences/PreferencesPage", "PreferencesPageDemo"),
     new PageEntry("pages/database/DataTaskDemoPage", "DataTaskDemoPage"),
+    new PageEntry("pages/notification/NotificationPage", "NotificationPage"),
   ];
   index: number = 1;
 

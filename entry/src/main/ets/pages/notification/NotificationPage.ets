@@ -1,0 +1,48 @@
+import router from '@ohos.router';
+import { notificationManager } from '@kit.NotificationKit';
+
+@Entry
+@Component
+struct NotificationPage {
+  @State title: string = "";
+  params: object = router.getParams();
+
+  aboutToAppear(): void {
+    this.title = this.params['title'];
+  }
+
+  ///文本通知事件
+  requestText: notificationManager.NotificationRequest = {
+    id: 123,
+    content: {
+      notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+      normal: {
+        title: "通知标题",
+        text: "通知内容",
+        additionalText: "附加内容"
+      }
+    }
+  }
+
+  build() {
+    Navigation() {
+      Column() {
+        Button('文本通知栏').ButtonStyleMy()
+          .onClick(() => {
+            notificationManager.publish(this.requestText).then(() => {
+              console.log("推送通知成功")
+            }).catch(() => console.log("推送通知失败"))
+          })
+      }
+      .height('100%')
+      .width('100%')
+      .padding(20)
+    }.title(this.title)
+  }
+}
+
+@Extend(Button)
+function ButtonStyleMy() {
+  .width(80)
+  .fontWeight(20)
+}
