@@ -2,20 +2,44 @@ import router from '@ohos.router';
 import { notificationManager } from '@kit.NotificationKit';
 import image from '@ohos.multimedia.image';
 
+import fs from '@ohos.file.fs';
+
 @Entry
 @Component
 struct NotificationPage {
   @State title: string = "";
   params: object = router.getParams();
   picture?: image.PixelMap = undefined;
+  isSupport: boolean = false;
+  template?: notificationManager.NotificationTemplate;
+  progressValue: number = 0
+  stateNotification: StateNotification = StateNotification.W
+  timeId: number = -1;
 
-  aboutToAppear(): void {
+  async aboutToAppear() {
     this.title = this.params['title'];
-    this.getPicture()
+    //this.getPicture()
+    //初始化时判断是否支持下载模板
+
   }
 
+  ///下载模板通知
+  request: notificationManager.NotificationRequest = {
+    id: 99,
+    template: this.template,
+    content: {
+      notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+      normal: {
+        title: "7_bit ：" + "this.stateNotification",
+        text: "",
+        additionalText: `${this.progressValue}%`
+
+      }
+    }
+  }
   ///文本通知事件
   requestText: notificationManager.NotificationRequest = {
+
     id: 123,
     content: {
       notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -62,7 +86,7 @@ struct NotificationPage {
   }
   ///图片类型通知
   requestTextImage: notificationManager.NotificationRequest = {
-    id: 912,
+    id: 9121,
     content: {
       notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_PICTURE,
       picture: {
@@ -81,9 +105,11 @@ struct NotificationPage {
     const context = getContext(this).resourceManager;
     let file = await context.getMediaContent($r("app.media.img"))
     console.log("=====================file", JSON.stringify(file))
+    let buffer = file.buffer
+    console.log("=====================filebuffer", JSON.stringify(file.buffer.byteLength))
     image.createImageSource(file.buffer).createPixelMap()
       .then(value => {
-        console.log("=====================value", JSON.stringify(value))
+        console.log("=====================value", JSON.stringify(value.getPixelBytesNumber()))
         this.picture = value
         console.log("=====================picture", JSON.stringify(this.picture))
       })
@@ -91,15 +117,42 @@ struct NotificationPage {
 
   }
 
-  click(request: notificationManager.NotificationRequest) {
-    notificationManager.publish(request).then(() => {
-      console.log("推送通知成功")
-    }).catch(() => console.log("推送通知失败"))
+  async click(request: notificationManager.NotificationRequest) {
+    console.log("是否支持下载模板", this.isSupport)
+    this.isSupport = await notificationManager.isSupportTemplate("downloadTemplate")
+
+    if (this.isSupport) {
+      this.template = {
+        name: "downloadTemplate",
+        data: {
+          progressValue: this.progressValue,
+          progressMaxValue: 100
+        }
+      }
+      notificationManager.publish(request).then(() => {
+        console.log("推送通知成功")
+      }).catch(() => console.log("推送通知失败"))
+    }
+
+  }
+
+  starPublish() {
+    this.timeId = setInterval(() => {
+      console.log("123============================")
+      this.click(this.request)
+      if (this.progressValue > 100) {
+        clearInterval(this.timeId)
+        this.timeId = -1;
+        this.stateNotification = StateNotification.C
+      }
+      this.progressValue += 2
+    }, 200)
+    this.stateNotification = StateNotification.X
   }
 
   build() {
     Navigation() {
-      Column() {
+      Column({ space: 20 }) {
         Button('文本通知栏').ButtonStyleMy()
           .onClick(() => {
             this.click(this.requestText)
@@ -112,10 +165,41 @@ struct NotificationPage {
           .onClick(() => {
             this.click(this.requestTextLines)
           })
-        Button('图片通知栏').ButtonStyleMy()
-          .onClick(() => {
-            this.click(this.requestTextImage)
-          })
+        Row() {
+          Text("下载状态：" + this.stateNotification)
+          Blank()
+          if (this.stateNotification === StateNotification.W) {
+            Button('开始').ButtonStyleMy()
+              .onClick(() => {
+                this.starPublish()
+              })
+          } else if (this.stateNotification === StateNotification.X) {
+            Button('暂停').ButtonStyleMy()
+              .onClick(() => {
+                //this.click(this.requestTextImage)
+                this.stateNotification = StateNotification.Z
+                clearInterval(this.timeId)
+              })
+
+            Button('结束').ButtonStyleMy()
+              .onClick(() => {
+                //this.click(this.requestTextImage)
+                this.stateNotification = StateNotification.W
+                clearInterval(this.timeId)
+              })
+          } else if (this.stateNotification === StateNotification.Z) {
+            Button('继续').ButtonStyleMy()
+              .onClick(() => {
+                this.starPublish()
+              })
+          } else {
+            Button('完成').ButtonStyleMy()
+              .onClick(() => {
+                //this.click(this.requestTextImage)
+              })
+          }
+        }
+
       }
       .height('100%')
       .width('100%')
@@ -128,4 +212,11 @@ struct NotificationPage {
 function ButtonStyleMy() {
   .width(80)
   .fontWeight(20)
+}
+
+enum StateNotification {
+  W = "未开始",
+  X = "下载中",
+  Z = "暂停",
+  C = "完成"
 }
