@@ -12,31 +12,20 @@ struct NotificationPage {
   picture?: image.PixelMap = undefined;
   isSupport: boolean = false;
   template?: notificationManager.NotificationTemplate;
-  progressValue: number = 0
-  stateNotification: StateNotification = StateNotification.W
+  @State progressValue: number = 0
+  @State stateNotification: StateNotification = StateNotification.W
   timeId: number = -1;
+  request?: notificationManager.NotificationRequest
 
   async aboutToAppear() {
     this.title = this.params['title'];
     //this.getPicture()
     //初始化时判断是否支持下载模板
+    this.isSupport = await notificationManager.isSupportTemplate("downloadTemplate")
+
 
   }
 
-  ///下载模板通知
-  request: notificationManager.NotificationRequest = {
-    id: 99,
-    template: this.template,
-    content: {
-      notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
-      normal: {
-        title: "7_bit ：" + "this.stateNotification",
-        text: "",
-        additionalText: `${this.progressValue}%`
-
-      }
-    }
-  }
   ///文本通知事件
   requestText: notificationManager.NotificationRequest = {
 
@@ -119,16 +108,7 @@ struct NotificationPage {
 
   async click(request: notificationManager.NotificationRequest) {
     console.log("是否支持下载模板", this.isSupport)
-    this.isSupport = await notificationManager.isSupportTemplate("downloadTemplate")
-
     if (this.isSupport) {
-      this.template = {
-        name: "downloadTemplate",
-        data: {
-          progressValue: this.progressValue,
-          progressMaxValue: 100
-        }
-      }
       notificationManager.publish(request).then(() => {
         console.log("推送通知成功")
       }).catch(() => console.log("推送通知失败"))
@@ -136,18 +116,51 @@ struct NotificationPage {
 
   }
 
+  id1: number = 99;
+
+  //开始
   starPublish() {
+
+    ///下载模板通知
     this.timeId = setInterval(() => {
-      console.log("123============================")
-      this.click(this.request)
-      if (this.progressValue > 100) {
+
+      if (this.progressValue < 100) {
+        this.progressValue += 2
+      } else {
         clearInterval(this.timeId)
         this.timeId = -1;
         this.stateNotification = StateNotification.C
       }
-      this.progressValue += 2
+      this.template = {
+        name: "downloadTemplate",
+        data: {
+          progressValue: this.progressValue,
+          progressMaxValue: 100,
+          fileName: "7bit.mp4",
+          title: "7—bit下载文件模板:" + this.stateNotification
+        }
+      }
+      this.request = {
+        id: this.id1,
+        template: this.template,
+        content: {
+          notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+          normal: {
+            title: "7_bit ：" + this.stateNotification,
+            text: "777",
+            additionalText: `${this.progressValue}%`
+          }
+        }
+      }
+      this.click(this.request!)
     }, 200)
     this.stateNotification = StateNotification.X
+  }
+
+  //重置
+  reset() {
+    this.stateNotification = StateNotification.W
+    this.progressValue = 0;
   }
 
   build() {
@@ -165,28 +178,21 @@ struct NotificationPage {
           .onClick(() => {
             this.click(this.requestTextLines)
           })
-        Row() {
-          Text("下载状态：" + this.stateNotification)
+        Row({ space: 10 }) {
+          Text("下载状态：" + this.progressValue + "%" + this.stateNotification)
           Blank()
           if (this.stateNotification === StateNotification.W) {
             Button('开始').ButtonStyleMy()
-              .onClick(() => {
-                this.starPublish()
-              })
+              .onClick(() => this.starPublish())
           } else if (this.stateNotification === StateNotification.X) {
             Button('暂停').ButtonStyleMy()
               .onClick(() => {
-                //this.click(this.requestTextImage)
                 this.stateNotification = StateNotification.Z
                 clearInterval(this.timeId)
               })
 
             Button('结束').ButtonStyleMy()
-              .onClick(() => {
-                //this.click(this.requestTextImage)
-                this.stateNotification = StateNotification.W
-                clearInterval(this.timeId)
-              })
+              .onClick(() => this.reset())
           } else if (this.stateNotification === StateNotification.Z) {
             Button('继续').ButtonStyleMy()
               .onClick(() => {
@@ -194,9 +200,7 @@ struct NotificationPage {
               })
           } else {
             Button('完成').ButtonStyleMy()
-              .onClick(() => {
-                //this.click(this.requestTextImage)
-              })
+              .onClick(() => this.reset())
           }
         }
 
