@@ -3,6 +3,7 @@ import { notificationManager } from '@kit.NotificationKit';
 import image from '@ohos.multimedia.image';
 
 import fs from '@ohos.file.fs';
+import { wantAgent } from '@kit.AbilityKit';
 
 @Entry
 @Component
@@ -117,6 +118,7 @@ struct NotificationPage {
   }
 
   id1: number = 99;
+  wantInfo?: wantAgent.WantAgentInfo = undefined
 
   //开始
   starPublish() {
@@ -130,7 +132,27 @@ struct NotificationPage {
         clearInterval(this.timeId)
         this.timeId = -1;
         this.stateNotification = StateNotification.C
+
       }
+      let want: wantAgent.WantAgentInfo = {
+        requestCode: 1,
+        actionType: wantAgent.OperationType.START_ABILITY,
+        wants: [
+          {
+            bundleName: "com.bit.stu_demo",
+            abilityName: "DocumentAbility",
+            parameters: {
+              instanceKey: "1"
+            }
+          }
+        ]
+      }
+      wantAgent.getWantAgent(want).then(v => {
+        this.wantInfo = v as wantAgent.WantAgentInfo;
+        console.log("成功了")
+      }).catch(() => {
+        console.log("错误错误错")
+      })
       this.template = {
         name: "downloadTemplate",
         data: {
@@ -140,9 +162,21 @@ struct NotificationPage {
           title: "7—bit下载文件模板:" + this.stateNotification
         }
       }
-      this.request = {
+      this.request = this.progressValue < 100 ? {
         id: this.id1,
         template: this.template,
+        content: {
+          notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+          normal: {
+            title: "7_bit ：" + this.stateNotification,
+            text: "777",
+            additionalText: `${this.progressValue}%`
+          }
+        }
+      } : {
+        id: this.id1,
+        template: this.template,
+        wantAgent: this.wantInfo,
         content: {
           notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
           normal: {
